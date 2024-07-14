@@ -21,3 +21,5 @@ spring:
         max-active: 100
         min-idle: 10
         max-wait: 100000
+  redisson:
+    address: "redis://localhost:6379"
