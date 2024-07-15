@@ -23,3 +23,5 @@ spring:
         max-wait: 100000
   redisson:
     address: "redis://localhost:6379"
+  session:
+    store-type: redis

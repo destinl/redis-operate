@@ -26,6 +26,9 @@ public class RateLimiterInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        if (!(handler instanceof HandlerMethod)){
+            return true;//web.servlet.resource.ResourceHttpRequestHandler 对象强制转换为 HandlerMethod 类型会报错
+        }
         if (!(((HandlerMethod) handler).getMethod().isAnnotationPresent(RateLimit.class))) {
             return true;//or false,false会返回连接错误
         }
@@ -38,7 +41,7 @@ public class RateLimiterInterceptor implements HandlerInterceptor {
         if (currentCount > rateLimitAnnotation.limit()) {
             // 如果当前计数大于1，则说明请求已超过限制
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Too many requests, please try again later.");
-            response.setStatus(429);
+            response.setStatus(429);//返回结果400BAD_REQUEST，怎么看是否有输出给定信息和状态
             return false;
         }
 
