@@ -58,5 +58,9 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.13.0</version> <!-- 使用适合你的 Jackson 版本 -->
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.data</groupId>-->
+<!--            <artifactId>spring-data-redis</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 </project>

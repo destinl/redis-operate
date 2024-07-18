@@ -6,6 +6,7 @@ package org.example.common.config;
  * @Date: 2024/6/1111:44
  */
 
+import org.example.domain.User;
 import org.example.message.MessageListenerImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,13 @@ public class RedisConfig {
     @Bean
     public RedisTemplate<String, Integer> redisTemplate_String_Integer(RedisConnectionFactory factory){
         RedisTemplate<String, Integer> template = new RedisTemplate<>();
+        template.setConnectionFactory(factory);
+        return template;
+    }
+
+    @Bean
+    public RedisTemplate<String, User> redisTemplate_String_User(RedisConnectionFactory factory){
+        RedisTemplate<String, User> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
         return template;
     }
