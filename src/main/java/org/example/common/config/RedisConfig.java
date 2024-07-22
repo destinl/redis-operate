@@ -41,6 +41,14 @@ public class RedisConfig {
         return template;
     }
 
+
+    @Bean
+    public RedisTemplate<String, Runnable> redisTemplate_String_Runnable(RedisConnectionFactory factory){
+        RedisTemplate<String, Runnable> template = new RedisTemplate<>();
+        template.setConnectionFactory(factory);
+        return template;
+    }
+
     @Bean
     public RedisMessageListenerContainer redisMessageListenerContainer(RedisConnectionFactory connectionFactory) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
